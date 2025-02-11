@@ -2,47 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>antenna.js</title>
+  <title>Try the 3D Mask in AR</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.rawgit.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras/dist/aframe-extras.controls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-    <!-- 3D Model -->
+  <a-scene embedded arjs>
+    <!-- 3D Mask Model -->
     <a-entity 
-      id="modelEntity"
-      gltf-model="./assets/antenna.glb" 
-      position="0 0 -5" 
-      scale="1 1 1" 
-      rotation="0 0 0"
-      animation="property: rotation; to: 0 360 0; loop: true; dur: 30000">
+      gltf-model="assets/your-mask.glb"
+      position="0 0 0"
+      scale="1 1 1"
+      rotation="0 180 0">
     </a-entity>
 
-    <!-- Sound -->
-  <!--  <a-sound 
-      id="ambientSound" 
-      src="./assets/blue130.mp3" 
-      loop="true" 
-      position="0 1 -5">
-    </a-sound> -->
-
-    <!-- Camera with Orbit Controls -->
-    <a-camera 
-      position="0 0 0"
-      orbit-controls="target: #modelEntity; enableDamping: true; dampingFactor: 0.1; rotateSpeed: 0.0; zoomSpeed: 0.5; minDistance: 2; maxDistance: 10;"
-      look-controls="enabled: false">
-    </a-camera>
+    <!-- Camera -->
+    <a-marker-camera preset="hiro"></a-marker-camera>
   </a-scene>
-
- <!--  <script>
-    // Ensure sound plays after user interaction
-    document.addEventListener('click', () => {
-      const soundEl = document.querySelector('#ambientSound');
-      if (soundEl && soundEl.components.sound) {
-        soundEl.components.sound.playSound();
-      }
-    }, { once: true });
-  </script>-->
 </body>
 </html>
