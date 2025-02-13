@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Face Mask</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.0/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://docs.opencv.org/4.x/opencv.js"></script>
+    <style>
+        #qr-code {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Show QR code for non-mobile devices -->
+    <div id="qr-code">
+        <p>Scan this QR code with your mobile device to open the app:</p>
+        <img src="qr-code.png" alt="QR Code" width="200">
+    </div>
+
+    <!-- AR Scene -->
+    <a-scene embedded arjs>
+        <a-camera gps-camera rotation-reader></a-camera>
+        <!-- 3D Mask (replace 'mask.glb' with your file) -->
+        <a-entity id="face-mask" gltf-model="url(mask.glb)" position="0 0 -1" scale="0.1 0.1 0.1"></a-entity>
+    </a-scene>
+
+    <!-- Audio -->
+    <audio id="background-sound" src="sound.mp3" autoplay loop></audio>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+    <script>
+        // Show QR code for non-mobile devices
+        if (!/Mobi|Android/i.test(navigator.userAgent)) {
+            document.getElementById('qr-code').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
